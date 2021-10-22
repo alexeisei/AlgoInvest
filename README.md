@@ -20,4 +20,5 @@ python optimized.py dataset1_Python+P7.csv
 ```
 python optimized.py dataset2_Python+P7.csv
 ```
-depending on the dataset you wish to execute
+
+depending on the dataset and algorithm you wish to execute
