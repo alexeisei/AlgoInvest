@@ -1,5 +1,4 @@
 from itertools import combinations
-import sys
 import csv
 import time
 
@@ -24,7 +23,7 @@ def buying_price(lst):
     return sum(actions_sum)
 
 
-# Creation and iteration through every possible combination
+# Creation and iteration through every possible combination to find the most optimal one
 def find_combination(lst):
 
     actions_list = lst
