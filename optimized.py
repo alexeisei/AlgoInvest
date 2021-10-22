@@ -16,22 +16,22 @@ def buying_price(lst):
     return sum(actions_sum)
 
 
-# Generate a O(n) matrix and find the best possible combination
+# Generate a K[actions][capacity] type matrix and find the best possible combination
 def knapsack(lst):
 
     price = max_wallet*10
 
     matrix = [[0 for x in range(price + 1)] for x in range(len(lst) + 1)]
 
-    for item in range(1, len(lst) + 1):
-        for action in range(1, price + 1):
-            if lst[item-1][1] <= action:
-                matrix[item][action] = max(
-                    lst[item-1][2] + matrix[item-1][action-lst[item-1][1]],
-                    matrix[item-1][action]
+    for cost in range(1, len(lst) + 1):
+        for profit in range(1, price + 1):
+            if lst[cost-1][1] <= profit:
+                matrix[cost][profit] = max(
+                    lst[cost-1][2] + matrix[cost-1][profit-lst[cost-1][1]],
+                    matrix[cost-1][profit]
                 )
             else:
-                matrix[item][action] = matrix[item-1][action]
+                matrix[cost][profit] = matrix[cost-1][profit]
 
     p = price
     n = len(lst)
@@ -48,7 +48,7 @@ def knapsack(lst):
     print('Best combination found: ')
     for c in comb:
         print(c[0])
-    print('Price to invest : ~', buying_price(comb)/10, '€')
+    print('Price to invest : ~', buying_price(comb)/10, '€ (Rounded up)')
     print('Generated profits: +', matrix[-1][-1], '€ at the end of year 2')
     print('Execution time: ', time.time() - start_time, "seconds")
 
