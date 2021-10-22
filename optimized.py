@@ -23,15 +23,15 @@ def knapsack(lst):
 
     matrix = [[0 for x in range(price + 1)] for x in range(len(lst) + 1)]
 
-    for cost in range(1, len(lst) + 1):
-        for profit in range(1, price + 1):
-            if lst[cost-1][1] <= profit:
-                matrix[cost][profit] = max(
-                    lst[cost-1][2] + matrix[cost-1][profit-lst[cost-1][1]],
-                    matrix[cost-1][profit]
+    for action in range(1, len(lst) + 1):
+        for capacity in range(1, price + 1):
+            if lst[action-1][1] <= capacity:
+                matrix[action][capacity] = max(
+                    lst[action-1][2] + matrix[action-1][capacity-lst[action-1][1]],
+                    matrix[action-1][capacity]
                 )
             else:
-                matrix[cost][profit] = matrix[cost-1][profit]
+                matrix[action][capacity] = matrix[action-1][capacity]
 
     p = price
     n = len(lst)
